@@ -2,7 +2,7 @@
 
 #get user input
 userTyped = input("Please enter a year, or 'q' to stop: ")
-c = 0
+
 #these are the length of months, not really needed but it makes it easier to uderstand :D
 jan = 31
 feb = 28
@@ -44,28 +44,26 @@ while(userTyped != 'q'):
     m = 1 #start on january which has to be 13 in zellar's congruence
 
     iterContinue = "yes"
-    check = 0
+
+    q = 1 #first day of month, and year
+
+    h = ((q + ((13 * (13 + 1)) / 5) + (k - 1) + ((k - 1) / 4) + (j / 4) + (5 * j)) % 7) #zellars congruence, this is the first day of year
+    h = int(h) #fixes decimal return
     
     while(m <= 12):
-        
-        h = 0
 
         #start on first day of month each time    
-        q = 1 
+        q = 1
 
         #Now set to correct month for string & days
         if(m == 1):
             days = jan
-            m = 13
             month = "January"
-            k -= 1 #january and february are months 13 and 14 of the previous year, gets reset when moving on to march
         elif(m == 2):
             days = feb
-            m = 14
             month = "February"
         elif(m == 3):
             days = mar
-            k += 1
             month = "March"
         elif(m == 4):
             days = apr
@@ -100,10 +98,6 @@ while(userTyped != 'q'):
         print(format("______________________________", ">49s"))
         print(format("Sun", ">23s"), format("Mon", ">3s"), format("Tue", ">3s"), format("Wed", ">3s"), format("Thu", ">3s"), format("Fri", ">3s"), format("Sat", ">3s"))
         while(q <= days):
-            h = ((q + ((13 * (m + 1)) / 5) + k + (k / 4) + (j / 4) + (5 * j)) % 7) #zellars congruence
-            h = int(h) #fixes decimal return
-            if(((m % 2) != 0) and ((m != 13) or (m != 14))):
-               h = h + 1
 
             #If first day of month put the '1' in whichever column is apropriate, if in saturday(0) allow for \n
             if(q == 1):
@@ -132,19 +126,11 @@ while(userTyped != 'q'):
             if(q == days and h != 0): #for when month doesn't end on a staurday
                 print()
             q += 1 #iterates day
-
-        #because of weird calcs, need to set month back to normal
-        if(month == "January"):
-            m = 1
-            print("January", m, k
-                  )
-
-        if(month == "February"):
-            m = 2
-            print("February", m, k)
+            h += 1
+            if(h == 7):
+                h = 0
 
         m += 1 #iterates month
-        print(m, k)
         
     #ask them if they want out
     userTyped = input("\nPlease enter a year, or \"q\" to stop: ")
