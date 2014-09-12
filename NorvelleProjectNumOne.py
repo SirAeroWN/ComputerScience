@@ -3,20 +3,6 @@
 #get user input
 userTyped = input("Please enter a year, or 'q' to stop: ")
 
-#these are the length of months, not really needed but it makes it easier to uderstand :D
-jan = 31
-feb = 28
-mar = 31
-apr = 30
-may = 31
-jun = 30
-jul = 31
-aug = 31
-sep = 30
-Oct = 31 #must have capital because oct is reserved
-nov = 30
-dec = 31
-
 leap = 0
 
 while(userTyped != 'q'):
@@ -57,40 +43,40 @@ while(userTyped != 'q'):
 
         #Now set to correct month for string & days
         if(m == 1):
-            days = jan
+            days = 31
             month = "January"
         elif(m == 2):
-            days = feb
+            days = 28
             month = "February"
         elif(m == 3):
-            days = mar
+            days = 31
             month = "March"
         elif(m == 4):
-            days = apr
+            days = 30
             month = "April"
         elif(m == 5):
-            days = may
+            days = 31
             month = "May"
         elif(m == 6):
-            days = jun
+            days = 30
             month = "June"
         elif(m == 7):
-            days = jul
+            days = 31
             month = "July"
         elif(m == 8):
-            days = aug
+            days = 31
             month = "August"
         elif(m == 9):
-            days = sep
+            days = 30
             month = "September"
         elif(m == 10):
-            days = Oct
+            days = 31
             month = "October"
         elif(m == 11):
-            days = nov
+            days = 30
             month = "November"
         elif(m == 12):
-            days = dec
+            days = 31
             month = "December"
 
         #the month header is printed once per month
