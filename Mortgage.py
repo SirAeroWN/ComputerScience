@@ -12,6 +12,6 @@ for interest in range(5000, 8125, 125):
     monthRate = interest / 1200000
     monthPay = (loan) * ((monthRate * ((1 + monthRate)**(duration * 12))) / ((1 + monthRate)**(duration * 12) - 1))
     total = monthPay * 12 * duration
-
-    print(format((interest / 1000), "<17.3f"), format(monthPay, "<20.3f"), format(total, "<30.3f"))
+    interestStr = format((interest / 1000), ".3f") + '%'
+    print(format(interestStr, "<17s"), format(monthPay, "<20.3f"), format(total, "<30.3f"))
     
