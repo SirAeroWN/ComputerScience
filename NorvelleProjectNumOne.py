@@ -99,20 +99,12 @@ while(userTyped != 'q'):
         print(format("Sun", ">23s"), format("Mon", ">3s"), format("Tue", ">3s"), format("Wed", ">3s"), format("Thu", ">3s"), format("Fri", ">3s"), format("Sat", ">3s"))
         while(q <= days):
 
+            spacer = 18 + (h * 4)
+            spacerStr = '>' + str(spacer) + 's'
             #If first day of month put the '1' in whichever column is apropriate, if in saturday(0) allow for \n
             if(q == 1):
-                if(h == 1):
-                    print(format('1', ">22s"), end = '')
-                elif(h == 2):
-                    print(format('1', ">26s"), end = '')
-                elif(h == 3):
-                    print(format('1', ">30s"), end = '')
-                elif(h == 4):
-                    print(format('1', ">34s"), end = '')
-                elif(h == 5):
-                    print(format('1', ">38s"), end = '')
-                elif(h == 6):
-                    print(format('1', ">42s"), end = '')
+                if(h != 0):
+                    print(format('1', spacerStr), end = '')
                 else:
                     print(format('1', ">46s"))
             #If not first day print the day, if sunday(1) need to allot more space, allow \n on staurday
