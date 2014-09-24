@@ -1,8 +1,20 @@
-def sumMyInt(endNum):
-    MyNum = 0
-    for i in range(1, endNum + 1):
-        MyNum += i
-    return MyNum
+import turtle
 
-userNum = eval(input("Give me an integer, please: "))
-print("I done addeded some numbers, and this is what I gots: " + str(sumMyInt(userNum)))
+turtle.penup()
+turtle.goto(0, -150)
+turtle.pendown()
+turtle.circle(200)
+turtle.penup()
+turtle.goto(100, 75)
+turtle.pendown()
+turtle.circle(30)
+turtle.penup()
+turtle.goto(-100, 75)
+turtle.pendown()
+turtle.circle(30)
+turtle.penup()
+turtle.goto(-90, -50)
+turtle.pendown()
+turtle.forward(180)
+turtle.goto(0, -80)
+turtle.goto(-90, -50)
