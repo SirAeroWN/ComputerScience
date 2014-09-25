@@ -1,13 +1,13 @@
-def reverseDepricated(number):
+def reverseDepricated(number):#this was the first one I made more lines
 	numStr = str(number)
-	i = len(numStr) - 1
+	i = len(numStr) - 1#iterates the right num of times
 	returnStr = ""
 	while(i >= 0):
-	    returnStr = returnStr + numStr[i]
+	    returnStr = returnStr + numStr[i]#starts at top and goes down
 	    i -= 1
 	return int(returnStr)
 
-def isPalindrome(number):
+def isPalindrome(number):#compares original to reversed
         return (number == reverse(number))
 
 def reverse(number):
@@ -46,11 +46,11 @@ def formatPrint(unformStr):
     print(format(unformStr, ">7s"), end = '')
     return
 
-def findYoPalenPrimes():
+def findYoPalenPrimes(numOfPalenPrimes):
     count = 0
     displayCount = 0
     candidate = 1
-    while(count < 100):
+    while(count < numOfPalenPrimes):
         if(isPrimePalindrome(candidate)):
             formatPrint(str(candidate))
             displayCount += 1
@@ -61,5 +61,5 @@ def findYoPalenPrimes():
         candidate += 1
     return
 
-findYoPalenPrimes()
+findYoPalenPrimes(eval(input("Enter the number of palendromic primes that you would like to see: ")))
 
