@@ -1,20 +1,21 @@
-import turtle
+def getPrefix(number, k):
+    rtnPrefix = ""
+    for i in range(0, k):
+    	rtnPrefix = rtnPrefix + str(number[i])
+    return rtnPrefix
 
-turtle.penup()
-turtle.goto(0, -150)
-turtle.pendown()
-turtle.circle(200)
-turtle.penup()
-turtle.goto(100, 75)
-turtle.pendown()
-turtle.circle(30)
-turtle.penup()
-turtle.goto(-100, 75)
-turtle.pendown()
-turtle.circle(30)
-turtle.penup()
-turtle.goto(-90, -50)
-turtle.pendown()
-turtle.forward(180)
-turtle.goto(0, -80)
-turtle.goto(-90, -50)
+def prefixMatched(number, d):
+    return (getPrefix(number, len(str(d))) == d)
+
+def checkPrefix(number):
+    if(prefixMatched(number, 4)):
+    	print("Visa")
+    elif(prefixMatched(number, 5)):
+    	print("Master Card")
+    elif(prefixMatched(number, 37)):
+    	print("American Express")
+    elif(prefixMatched(number, 6)):
+    	print("Discover")
+    return
+
+checkPrefix()
