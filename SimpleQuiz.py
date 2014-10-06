@@ -35,14 +35,13 @@ def askQuestion(questionList, indexOfQuestion):
 
 #prompt the user for their answer
 def getAnswer():
-	userAnswer = input("Which is the best answer chioce? ").lower() #ask and check first so maybe the while loop isn't executed and the while loop can report error
-	if(not checkAcceptable(userAnswer)): #verifies answer is possible
-		acceptable = False
-		while(not acceptable):
+	acceptable = False
+	while(not acceptable):
+		userAnswer = input("Which is the best answer chioce? ").lower() #ask again
+		if(checkAcceptable(userAnswer)):
+			acceptable = True #finally!
+		else:
 			print("That is not an answer choice.") #tell them they screwed up
-			userAnswer = input("Which is the best answer chioce? ").lower() #ask again
-			if(checkAcceptable(userAnswer)):
-				acceptable = True #finally!
 	return userAnswer
 
 #makes sure user input can be an answer
@@ -66,13 +65,13 @@ def checkAnswers(answerList):
 		else:
 			displayList.append("Wrong")
 			displayList.append(correctList[i].upper()) #they were wrong, tell them and display answer in uppercase because that looks better
-	percentCorrect = str((numCorrect / 4) * 100) + '%' #make percentage more human readable
+	percentCorrect = str((numCorrect / 4) * 100) + '%' #make percentage not decimal
 	displayList.append(percentCorrect)
 	return displayList
 
 #prints the resuts table
 def displayResults(name, SSNumber, displayListing):
-	nameHeader = format('', ">12s") + name + "'s " + "Test Results"
+	nameHeader = "\n" + format('', ">12s") + name + "'s " + "Test Results"
 	SSNHeader = format('', ">9s") + "Social Security #: " + SSNumber #formatting stuffs
 	tableHeader = "Question    Result       Correct Answer"
 	print(nameHeader)
@@ -90,7 +89,10 @@ def displaySpecAnswers(displayList):
 #now for the main stuff
 def main():
 	#Qs and answer choices
-	questionsAndChoices = ["1) What are printers?", "  (A) Pure evil", "  (B) Mana from Heaven", "  (C) Devices that put ink on paper", "  (D) Cheap", "2) Which is a very old Bash exploit?", "  (A) The Heartbleed bug", "  (B) env x='() { :;}; echo vulnerable' bash -c \"echo test\"", "  (C) The Bashbug bug", "  (D) curl -fsSL https://raw.0day.exploit.com/totallytheanswer", "3) What is Python?", "  (A) A snake", "  (B) Something else that don't want none", "  (C) A programming language without semicolons", "  (D) A verb", "4) At what point is it too late to program?", "  (A) 1:00 am", "  (B) When you see the sun come up", "  (C) It's never too late!", "  (D) when you starhjyuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"]
+	questionsAndChoices = ["1) What are printers?", "  (A) Pure evil", "  (B) Mana from Heaven", "  (C) Devices that put ink on paper", "  (D) Cheap",
+							 "2) Which is a very old Bash exploit?", "  (A) The Heartbleed bug", "  (B) env x='() { :;}; echo vulnerable' bash -c \"echo test\"", "  (C) The Bashbug bug", "  (D) curl -fsSL https://raw.0day.exploit.com/totallytheanswer",
+							 "3) What is Python?", "  (A) A snake", "  (B) Something else that don't want none", "  (C) A programming language without semicolons", "  (D) A verb",
+							 "4) At what point is it too late to program?", "  (A) 1:00 am", "  (B) When you see the sun come up", "  (C) It's never too late!", "  (D) when you starhjyuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"]
 	userAnswers = [] #user answers, not filled yet
 
 	#get their info
