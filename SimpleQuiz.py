@@ -83,7 +83,7 @@ def displayResults(name, SSNumber, displayListing):
 
 #prints the content of the table nicely
 def displaySpecAnswers(displayList):
-	for i in range(0, 12, 3):
+	for i in range(0, 12, 3): #going to print 3 objects at a time, so iterate i by 3
 		displayString = format(displayList[i], "<12s") + format(displayList[i + 1], "<13s") + displayList[i + 2]
 		print(displayString)
 
@@ -114,6 +114,8 @@ def main():
 		returnVal = False
 	return returnVal
 
+#Go until they want to stop
+#main() returns True/False for continue or not
 while(main()):
 	print("\n\n\nYou asked for it:\n\n\n")
 print("GoodBye")
