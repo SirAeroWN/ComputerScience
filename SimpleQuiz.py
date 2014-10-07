@@ -90,9 +90,9 @@ def displaySpecAnswers(displayList):
 def main():
 	#Qs and answer choices
 	questionsAndChoices = ["1) What are printers?", "  (A) Pure evil", "  (B) Mana from Heaven", "  (C) Devices that put ink on paper", "  (D) Cheap",
-							 "2) Which is a very old Bash exploit?", "  (A) The Heartbleed bug", "  (B) env x='() { :;}; echo vulnerable' bash -c \"echo test\"", "  (C) The Bashbug bug", "  (D) curl -fsSL https://raw.0day.exploit.com/totallytheanswer",
-							 "3) What is Python?", "  (A) A snake", "  (B) Something else that don't want none", "  (C) A programming language without semicolons", "  (D) A verb",
-							 "4) At what point is it too late to program?", "  (A) 1:00 am", "  (B) When you see the sun come up", "  (C) It's never too late!", "  (D) when you starhjyuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"]
+							"2) Which is a very old Bash exploit?", "  (A) The Heartbleed bug", "  (B) env x='() { :;}; echo vulnerable' bash -c \"echo test\"", "  (C) The Bashbug bug", "  (D) curl -fsSL https://raw.0day.exploit.com/totallytheanswer",
+							"3) What is Python?", "  (A) A snake", "  (B) Something else that don't want none", "  (C) A programming language without semicolons", "  (D) A verb",
+							"4) At what point is it too late to program?", "  (A) 1:00 am", "  (B) When you see the sun come up", "  (C) It's never too late!", "  (D) when you starhjyuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"]
 	userAnswers = [] #user answers, not filled yet
 
 	#get their info
