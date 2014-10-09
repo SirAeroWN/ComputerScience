@@ -1,7 +1,7 @@
 #A simple class for rectangles
 
 class Rectangle:
-	"""docstring for Rectangle"""
+	"""simple rectangle class that can return area and perimeter"""
 	def __init__(self, width = 1, height = 2):
 		self.__width = width
 		self.__height = height
