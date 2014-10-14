@@ -4,8 +4,9 @@ import time
 
 class StopWatch:
 	def __init__(self):
-		self.__startTime = time.time()
-		self.__stopTime = time.time() + 1000000000 #add a billion seconds in case they try to call ElapsedTime() too soon
+		current = time.time()
+		self.__startTime = current
+		self.__stopTime = current
 
 	def getStart(self):
 		return self.__startTime
@@ -31,7 +32,6 @@ timer = StopWatch()
 total = 0
 timer.start()
 for i in range(1, 1000001):
-	print("in")
 	total += i
 timer.stop()
 print("That took", timer.ElapsedTime(), "miliseconds")
