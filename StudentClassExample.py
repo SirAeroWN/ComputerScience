@@ -37,14 +37,17 @@ printThisStuff(csCourse)
 
 mathCourse = []
 
-addScoresBeacauseIDontWantToType(student1, [100, 95], 99)
-mathCourse.append(student1)
+student4 = Student("Amy Amazing")
+addScoresBeacauseIDontWantToType(student4, [100, 95], 99)
+mathCourse.append(student4)
 
-addScoresBeacauseIDontWantToType(student2, [70, 75], 80)
-mathCourse.append(student2)
+student5 = Student("Mike Mediocre")
+addScoresBeacauseIDontWantToType(student5, [70, 75], 80)
+mathCourse.append(student5)
 
-addScoresBeacauseIDontWantToType(student3, [50, 60], 40)
-mathCourse.append(student3)
+student6 = Student("Sam Slacker")
+addScoresBeacauseIDontWantToType(student6, [50, 60], 40)
+mathCourse.append(student6)
 
 print("\n\nMath Class")
 printThisStuff(mathCourse)
