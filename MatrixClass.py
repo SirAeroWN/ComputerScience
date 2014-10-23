@@ -75,35 +75,28 @@ class Matrix:
 
 		#get top triangle of zeros
 		for i in range(0, (self.rows) - 1):
-			print("row", i, self.contents[i])
 			for j in range((i + 1), self.rows):
 				if(self.contents[i][j] != 0):
 					self.rowCombine((-1 * self.contents[i][j]), 1, j, i)
 		return
 
 	def stripFront(self):
-		stripped = Matrix(self.rows, (self.columns / 2))
-		for i in range(self.rows, self.columns):
-			stripped.contents[]
+		stripped = Matrix(self.rows, int(self.columns / 2))
+		for i in range(0, self.rows):
+			k = 0
+			for j in range(self.rows, self.columns):
+				stripped.contents[i][k] = float(format(self.contents[i][j], ".4f"))
+				k += 1
+		self.contents = stripped.contents
+		return
 
+	def Inverse(matrix):
+		inverted = matrix
+		inverted.augmentIdentity()
+		inverted.rref()
+		inverted.stripFront()
+		return inverted
 
-	def __add__(self, other):
-		newMatrix = Matrix()
-		for row in range(0, self.rows):
-			for col in range(0, self.columns):
-				newMatrix.contents[row][col] = self.contents[row][col] + other.contents[row][col]
-		return newMatrix
-
-#
-#	def assignAll(self, contentList):
-#		if((len(contentList[]) == self.__rows) and (len(contentList[0]):
-#			for i in range(0, self.__rows):
-
-# a = Matrix()
-# a.assignRow(0, [1,2])
-# a.printit()
-# b = Matrix()
-# b.assignRow(1, [1,2])
-# b.printit()
-# c = a + b
-# c.printit()
+	def SystemSolution(matrixA, matrixC):
+		matrixB = Inverse(matrixA) * matrixC
+		return matrixB
