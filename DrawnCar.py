@@ -1,6 +1,6 @@
 from tkinter import *
 
-class Car:
+class CarCanvas:
 	def __init__(self):
 		self.window = Tk()
 		self.window.geometry("320x160")
@@ -37,4 +37,4 @@ class Car:
 	def right(self, event):
 		self.canvas.move('body', 5, 0)
 		return
-Car()
+CarCanvas()
