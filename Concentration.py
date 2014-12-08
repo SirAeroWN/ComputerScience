@@ -113,3 +113,5 @@ while bart == 0:
 	LeGame()
 	if messagebox.askyesno('Continue?', 'Would you like to play again?'):
 		LeGame()
+	else:
+		bart = 1
