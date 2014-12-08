@@ -62,14 +62,20 @@ class LeGame:
 
 def itsAllOverNow():
 	messagebox.showinfo('Loser', 'You Lost')
+	bart = messagebox.askyesno('Continue?', 'Would you like to play again?')
 	global window
 	window.destroy()
+	if bart:
+		LeGame()
 	return
 
 def theMiracle():
 	messagebox.showinfo('Winner', 'You Won!')
+	bart = messagebox.askyesno('Continue?', 'Would you like to play again?')
 	global window
 	window.destroy()
+	if bart:
+		LeGame()
 	return
 
 def iterateList():
@@ -109,8 +115,8 @@ global misses
 misses = 0
 bart = 0
 LeGame()
-while bart == 0:
-	if messagebox.askyesno('Continue?', 'Would you like to play again?'):
-		LeGame()
-	else:
-		bart = 1
+# while bart == 0:
+# 	if messagebox.askyesno('Continue?', 'Would you like to play again?'):
+# 		LeGame()
+# 	else:
+# 		bart = 1

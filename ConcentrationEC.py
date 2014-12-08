@@ -77,16 +77,22 @@ def contains(listy, query):
 
 def itsAllOverNow():
 	messagebox.showinfo('Loser', 'You Lost')
+	bart = messagebox.askyesno('Continue?', 'Would you like to play again?')
 	global window
 	window.destroy()
+	if bart:
+		LeGame()
 	return
 
 def theMiracle():
 	global misses
 	meesage = 'You Won!\nAnd in only took ' + str(misses + 8) + ' tries!'
 	messagebox.showinfo('Winner', meesage)
+	bart = messagebox.askyesno('Continue?', 'Would you like to play again?')
 	global window
 	window.destroy()
+	if bart:
+		LeGame()
 	return
 
 def iterateList():
