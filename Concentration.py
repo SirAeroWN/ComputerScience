@@ -17,7 +17,6 @@ class Card:
 		self.selected = True
 		self.button['image'] = self.image
 		self.button['command'] = self.homer
-		nonSelected = []
 		return
 	
 	def flipdown(self):
@@ -109,8 +108,8 @@ matches = 0
 global misses
 misses = 0
 bart = 0
+LeGame()
 while bart == 0:
-	LeGame()
 	if messagebox.askyesno('Continue?', 'Would you like to play again?'):
 		LeGame()
 	else:
