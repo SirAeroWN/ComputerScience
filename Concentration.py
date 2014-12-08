@@ -65,7 +65,6 @@ def itsAllOverNow():
 	messagebox.showinfo('Loser', 'You Lost')
 	global window
 	window.destroy()
-	prompt
 	return
 
 def theMiracle():
@@ -109,5 +108,8 @@ global matches
 matches = 0
 global misses
 misses = 0
-
-LeGame()
+bart = 0
+while bart == 0:
+	LeGame()
+	if messagebox.askyesno('Continue?', 'Would you like to play again?'):
+		LeGame()
