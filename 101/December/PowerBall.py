@@ -1,4 +1,5 @@
 import random
+from tkinter import messagebox
 
 def prompt(upper, message):
 	entry = eval(input(message))
@@ -22,16 +23,7 @@ def getLottoNumber():
 
 def sortandConvert(numList):
 	listToSort = numList
-	for i in range(len(listToSort)):
-		minim = listToSort[i]
-		minimIndex = i
-		for j  in range(i + 1, len(listToSort)):
-			if minim > listToSort[j]:
-				minim = listToSort[j]
-				minimIndex = j
-		if minimIndex != i:
-			listToSort[minimIndex] = listToSort[i]
-			listToSort[i] = minim
+	listToSort.sort()
 	sortStr = ''
 	for num in listToSort:
 		sortStr += str(num)
@@ -56,5 +48,6 @@ else:
 		if draws % 1000000 == 0:
 			print(draws)
 		if guesses == getLottoNumber():
-			print("You won the Lottery! It took", draws, "though...")
+			message = "You won the Lottery! It took " + str(draws) + " draws though..."
+			messagebox.showinfo('Win!', message)
 			missed = False

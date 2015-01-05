@@ -34,6 +34,10 @@ class Card:
 
 class LeGame:
 	def __init__(self):
+		global matches
+		matches = 0
+		global misses
+		misses = 0
 		global window
 		window = Tk()
 		window.title = 'Concentration'

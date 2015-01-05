@@ -95,6 +95,10 @@ def finishHim(title, message):
 	global window
 	window.destroy() #kill the window no matter how much they beg
 	if bart: #see if they wanted to keep playing
+		global misses #reset the misses and matches
+		misses = 0
+		global matches
+		matches = 0
 		LeGame() #if they did, start it all over and make an instance of the main GUI
 	return #they keep playing as much as they want, when their done all of these returns are called and they go back down the stack until it ends
 

@@ -17,12 +17,12 @@ def toHexChar(hexValue):
         
 # Define a Ball class
 class Ball:
-    def __init__(self):
+    def __init__(self, yspeed):
         self.x = 0 # Starting center position
         self.y = 0 
-        self.dx = 2 # Move right by default
-        self.dy = 2 # Move down by default
-        self.radius = 3 # The radius is fixed
+        self.dx = 2#1.0 / (1 + yspeed) # Move right by default
+        self.dy = 2#yspeed # Move down by default
+        self.radius = 6 # The radius is fixed
         self.color = getRandomColor() # Get random color
 
 class BounceBalls:
@@ -33,7 +33,7 @@ class BounceBalls:
         window.title("Bouncing Balls") # Set a title
         
         self.width = 350 # Width of the self.canvas
-        self.height = 150 # Width of the self.canvas
+        self.height = 350 / 2 # Width of the self.canvas
         self.canvas = Canvas(window, bg = "white", 
             width = self.width, height = self.height)
         self.canvas.pack()
@@ -72,14 +72,16 @@ class BounceBalls:
 
     def fast(self):
         self.sleepTime -= 10
+        print(self.sleepTime)
         return
 
     def slow(self):
         self.sleepTime += 10
+        print(self.sleepTime)
         return
     
     def add(self): # Add a new ball
-        self.ballList.append(Ball())
+        self.ballList.append(Ball(len(self.ballList)))
         return
     
     def remove(self): # Remove the last ball 
