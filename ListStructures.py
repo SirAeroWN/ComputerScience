@@ -219,7 +219,7 @@ class Queue:
 		return theString
 
 	def enqueue(self, data):
-		node = DoublyLinkedListNode(data, None, self.tail)
+		node = LinkedListNode(data, None)
 		if self.size == 0:
 			self.head = node
 			self.tail = node
@@ -230,10 +230,10 @@ class Queue:
 		return
 
 	def dequeue(self):
+		response = self.head.data
 		self.head = self.head.next
-		self.head.prev = None
 		self.size -= 1
-		return
+		return response
 
 	def peek(self):
 		return self.head.data
