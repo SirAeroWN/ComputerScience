@@ -183,20 +183,18 @@ class Stack:
 			curNode = curNode.next
 		return theString
 
-	def push(self, data):
+	def push(self, data): #add to the top
 		if self.size == 0:
 			nextNode = None
 		else:
 			nextNode = self.head
-		node = DoublyLinkedListNode(data, nextNode, None)
-		self.head.prev = node
+		node = LinkedListNode(data, nextNode)
 		self.head = node
 		self.size += 1
 		return
 
 	def pop(self):
 		self.head = self.head.next
-		self.head.prev = None
 		self.size -= 1
 		return
 
