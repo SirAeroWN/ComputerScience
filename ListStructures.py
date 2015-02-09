@@ -194,9 +194,10 @@ class Stack:
 		return
 
 	def pop(self):
+		response = self.head.data
 		self.head = self.head.next
 		self.size -= 1
-		return
+		return response
 
 class Queue:
 	def __init__(self):
