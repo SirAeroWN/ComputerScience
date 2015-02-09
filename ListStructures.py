@@ -60,7 +60,7 @@ class LinkedList:
 		return
 
 class BinaryTreeNode:
-	def __init__(self, data, leftChild, rightChild):
+	def __init__(self, data, leftChild = None, rightChild = None):
 		self.data = data
 		self.left = leftChild
 		self.right = rightChild
@@ -72,11 +72,40 @@ class BinaryTree:
 		self.height = 0
 		return
 
-	def addLeft(self):
+	def __str__(self):
+		lestr = self.strAcrue(self.root)
+		return lestr
+
+
+	def addChild(self, data):
+		node = BinaryTreeNode(data)
+		if self.root:
+			self.__compare(node, self.root)
+		else:
+			self.root = node
+			self.height = 1
 		return
 
-	def addRight(self):
+	def __compare(self, lowerNode, higherNode):
+		if lowerNode.data <= higherNode.data:
+			if higherNode.left == None:
+				higherNode.left = lowerNode
+				return
+			else:
+				self.__compare(lowerNode, higherNode.left)
+		else:
+			if higherNode.right == None:
+				higherNode.right = lowerNode
+				return
+			else:
+				self.__compare(lowerNode, higherNode.right)
 		return
+
+	def strAcrue(self, node):
+		if node == None:
+			return ''
+		else:
+			return self.strAcrue(node.left) + str(node.data) + self.strAcrue(node.right)
 
 class DoublyLinkedListNode:
 	def __init__(self, mydata, mynext, myprevious):
@@ -154,7 +183,7 @@ class Stack:
 			curNode = curNode.next
 		return theString
 
-	def addToFront(self, data):
+	def push(self, data):
 		if self.size == 0:
 			nextNode = None
 		else:
@@ -165,7 +194,7 @@ class Stack:
 		self.size += 1
 		return
 
-	def removeFromFront(self):
+	def pop(self):
 		self.head = self.head.next
 		self.head.prev = None
 		self.size -= 1
@@ -208,3 +237,9 @@ class Queue:
 
 	def peek(self):
 		return self.head.data
+
+lst = ['a', 'z', 'b', 'y', 'c', 'x', 'd', 'w', 'u', 'e', 't', 'f', 's', 'g', 'r', 'h', 'q', 'i', 'p', 'j', 'o', 'k', 'n', 'l', 'm', 'v']
+a = BinaryTree()
+for i in lst:
+	a.addChild(i)
+print(a)
