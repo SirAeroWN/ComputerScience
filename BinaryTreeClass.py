@@ -8,16 +8,16 @@ class BinaryTreeNode:
 class BinaryTree:
 	def __init__(self):
 		self.root = None
-		self.height = 0 #this never really updates...
+		self.size = 0 #this never really updates...
 		return
 
 	def addChild(self, data):
 		node = BinaryTreeNode(data)
+		self.size += 1
 		if self.root: #if it has a root already then you need to put the new node in the right place
 			self.__compare(node, self.root)
 		else: #otherwise it is the new root
 			self.root = node
-			self.height = 1
 		return
 
 	def __compare(self, lowerNode, higherNode):
@@ -74,15 +74,21 @@ class BinaryTree:
 		alist.append(node.data)
 		return
 
-a = [5, 3, 6, 2, 4, 8, 1, 7, 9]
-b = BinaryTree()
-for o in a:
-	b.addChild(o)
-print(b.inorder())
-print('--------------------------------')
-print(b.preorder())
-print('--------------------------------')
-print(b.postorder())
+# TheTreeOfLife = BinaryTree()
+# continueing = True
+# while continueing:
+# 	tempInput = input("Enter a string to populate the binary tree with [type 'end' to stop]: ")
+# 	if tempInput.lower() == 'end':
+# 		continueing = False
+# 	else:
+# 		TheTreeOfLife.addChild(tempInput)
+
+# print("Your input inorder: ", end = '')
+# print(TheTreeOfLife.inorder())
+# print("Your input preorder: ", end = '')
+# print(TheTreeOfLife.preorder())
+# print("Your input postorder: ", end = '')
+# print(TheTreeOfLife.postorder())
 
 #I made a ASCII box :)
 #___
