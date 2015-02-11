@@ -39,6 +39,7 @@ class calc(Stack):
 		else:
 			self.displayVal = self.displayVal + num
 		self.display['text'] = self.displayVal
+		self.new = False
 		return
 
 	def one(self):
@@ -82,13 +83,33 @@ class calc(Stack):
 		return
 		
 	def dot(self):
-		self.changeDisplay('.')
+		if self.new:
+			self.changeDisplay('0.')
+		elif '.' in self.displayVal:
+			doNothing = True
+		else:
+			self.changeDisplay('.')
 		return
 		
 	def delete(self):
+		self.new = True
+		self.changeDisplay('0')
+		self.new = True
 		return
 
 	def enter(self):
+		floatBool = True
+		localDisplayVal = self.displayVal
+		if localDisplayVal[len(localDisplayVal) - 1] == '.':
+			localDisplayVal = localDisplayVal + '0'
+		elif '.' not in localDisplayVal:
+			floatBool = False
+		if floatBool:
+			valToPush = float(localDisplayVal)
+		else:
+			valToPush = int(localDisplayVal)
+		self.push(valToPush)
+		self.new = True
 		return
 
 	def clearall(self):
@@ -101,15 +122,55 @@ class calc(Stack):
 		return
 
 	def multiply(self):
+		try:
+			num1 = self.pop()
+			num2 = self.pop()
+			newVal = num1 * num2
+			self.push(newVal)
+			self.changeDisplay(str(newVal))
+		except:
+			self.changeDisplay('ERROR: TOO FEW ARGUMENTS')
+			self.clearall()
+		self.new = True
 		return
 
 	def divide(self):
+		try:
+			num1 = self.pop()
+			num2 = self.pop()
+			newVal = num1 / num2
+			self.push(newVal)
+			self.changeDisplay(str(newVal))
+		except:
+			self.changeDisplay('ERROR: TOO FEW ARGUMENTS')
+			self.clearall()
+		self.new = True
 		return
 
 	def add(self):
+		try:
+			num1 = self.pop()
+			num2 = self.pop()
+			newVal = num1 + num2
+			self.push(newVal)
+			self.changeDisplay(str(newVal))
+		except:
+			self.changeDisplay('ERROR: TOO FEW ARGUMENTS')
+			self.clearall()
+		self.new = True
 		return
 
 	def subtract(self):
+		try:
+			num1 = self.pop()
+			num2 = self.pop()
+			newVal = num1 - num2
+			self.push(newVal)
+			self.changeDisplay(str(newVal))
+		except:
+			self.changeDisplay('ERROR: TOO FEW ARGUMENTS')
+			self.clearall()
+		self.new = True
 		return
 
 	def isOperator(self, pot):

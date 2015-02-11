@@ -145,7 +145,7 @@ class Stack:
 		self.size += 1
 		return
 
-	def pop(self):
+	def pop(self): #pull from top
 		response = self.head.data
 		self.head = self.head.next
 		self.size -= 1
@@ -189,4 +189,3 @@ class Queue:
 	def peek(self):
 		return self.head.data
 
-lst = ['a', 'z', 'b', 'y', 'c', 'x', 'd', 'w', 'u', 'e', 't', 'f', 's', 'g', 'r', 'h', 'q', 'i', 'p', 'j', 'o', 'k', 'n', 'l', 'm', 'v']
