@@ -141,21 +141,26 @@ class calc(Stack):
 			self.push(newVal)
 			self.changeDisplay(str(newVal))
 		except:
-			self.changeDisplay('ERROR: TOO FEW ARGUMENTS')
+			self.changeDisplay('ERROR')
 			self.clearall()
 		self.new = True
 		return
 
 	def divide(self):
+		print(self.new)
 		self.enter()
 		try:
 			num1 = self.pop()
 			num2 = self.pop()
-			newVal = num1 / num2
-			self.push(newVal)
-			self.changeDisplay(str(newVal))
+			print(num1, num2)
+			if num1 == 0:
+				self.changeDisplay('ERROR: DIVISION BY ZERO')
+			else:
+				newVal = num2 / num1
+				self.push(newVal)
+				self.changeDisplay(str(newVal))
 		except:
-			self.changeDisplay('ERROR: TOO FEW ARGUMENTS')
+			self.changeDisplay('ERROR')
 			self.clearall()
 		self.new = True
 		return
@@ -169,7 +174,7 @@ class calc(Stack):
 			self.push(newVal)
 			self.changeDisplay(str(newVal))
 		except:
-			self.changeDisplay('ERROR: TOO FEW ARGUMENTS')
+			self.changeDisplay('ERROR')
 			self.clearall()
 		self.new = True
 		return
@@ -179,11 +184,11 @@ class calc(Stack):
 		try:
 			num1 = self.pop()
 			num2 = self.pop()
-			newVal = num1 - num2
+			newVal = num2 - num1
 			self.push(newVal)
 			self.changeDisplay(str(newVal))
 		except:
-			self.changeDisplay('ERROR: TOO FEW ARGUMENTS')
+			self.changeDisplay('ERROR')
 			self.clearall()
 		self.new = True
 		return
