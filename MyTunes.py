@@ -42,7 +42,10 @@ class MusicPlayer():
 		self.root.title = "MyTunes"
 		self.music = self.readDatabase()
 		self.current = self.music.head
+		pygame.mixer.init()
+		pygame.mixer.music.load(self.current.data.filename)
 		self.playing = False
+		self.started = False
 		self.albumCover = Label(self.info, image = self.current.data.art)
 		self.titleLbl = Label(self.info, text = self.current.data.title)
 		self.artistLbl = Label(self.info, text = self.current.data.artist)
@@ -81,13 +84,26 @@ class MusicPlayer():
 		self.titleLbl['text'] = self.current.data.title
 		self.artistLbl['text'] = self.current.data.artist
 		self.albumLbl['text'] = self.current.data.album
+		pygame.mixer.music.load(self.current.data.filename)
 		return
 
 	def previous(self):
+		self.current = self.current.prev
+		self.albumCover['image'] = self.current.data.art
+		self.titleLbl['text'] = self.current.data.title
+		self.artistLbl['text'] = self.current.data.artist
+		self.albumLbl['text'] = self.current.data.album
+		pygame.mixer.music.load(self.current.data.filename)
 		return
 
 	def play(self):
-		pygame.mixer.music.play()
+		if self.playing:
+			do = 'nothing'
+		elif not self.started:
+			pygame.mixer.music.unpause()
+		else:
+			pygame.mixer.music.play()
+		self.playing = True
 		return
 
 	def pause(self):
@@ -95,11 +111,9 @@ class MusicPlayer():
 		return
 
 	def delete(self):
-		pygame.mixer.music.unpause()
 		return
 
 	def add(self):
-		pygame.mixer.music.stop()
 		return
 
 	def search(self):
