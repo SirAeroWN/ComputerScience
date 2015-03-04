@@ -45,7 +45,7 @@ class CQueue:
 			nextNode = None
 		else:
 			nextNode = self.head
-		node = DoublyLinkedListNode(data, nextNode, None)
+		node = DoublyLinkedListNode(data, nextNode, self.tail)
 		self.head.prev = node
 		self.head = node
 		self.size += 1
