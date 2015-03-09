@@ -3,6 +3,7 @@ import PIL
 from PIL import Image
 from CircularQueue import *
 from tkinter import *
+from tkinter import Toplevel
 
 class song:
 	def __init__(self, title, artist, album, filename, artwork):
@@ -10,6 +11,7 @@ class song:
 		self.artist = artist
 		self.album = album
 		self.filename = filename
+		self.artfile = artwork
 		self.art = PhotoImage(file = artwork)
 
 class circlular(CQueue):
@@ -18,7 +20,8 @@ class circlular(CQueue):
 		self.currnode = self.head
 		return
 
-	def insert(self, data):
+	def insert(self, current, data):
+		self.currnode = current
 		node = DoublyLinkedListNode(data, self.currnode.next, self.currnode)
 		self.currnode.next.prev = node
 		self.currnode.next = node
@@ -39,13 +42,18 @@ class MusicPlayer():
 		self.controls = Frame(self.root)
 		self.info.pack()
 		self.controls.pack()
-		self.root.title = "MyTunes"
+		self.root.title("MyTunes")
 		self.music = self.readDatabase()
 		self.current = self.music.head
 		pygame.mixer.init()
 		pygame.mixer.music.load(self.current.data.filename)
 		self.playing = False
 		self.started = False
+		self.Title = StringVar()
+		self.Album = StringVar()
+		self.Artist = StringVar()
+		self.SFilepath = StringVar()
+		self.AFilepath = StringVar()
 		self.albumCover = Label(self.info, image = self.current.data.art)
 		self.titleLbl = Label(self.info, text = self.current.data.title)
 		self.artistLbl = Label(self.info, text = self.current.data.artist)
@@ -76,7 +84,25 @@ class MusicPlayer():
 		for line in dataFile:
 			listOfInfo = line.split(',')
 			circ.addToTail(song(listOfInfo[0], listOfInfo[1], listOfInfo[2], listOfInfo[3], listOfInfo[4].strip()))
+		dataFile.close()
 		return circ
+
+	def writeDatabase(self):
+		dataFile = open('songs/Songs.database', 'w')
+		curr = self.music.head
+		theinfo = curr.data.title + ',' + curr.data.artist + ',' + curr.data.album + ',' + curr.data.filename + ',' + curr.data.artfile + '\n'
+		dataFile.close()
+		dataFile = open('songs/Songs.database', 'a')
+		curr = curr.next
+		done = False
+		while not done:
+			theinfo = curr.data.title + ',' + curr.data.artist + ',' + curr.data.album + ',' + curr.data.filename + ',' + curr.data.artfile + '\n'
+			dataFile.write(theinfo)
+			curr = curr.next
+			if curr == self.music.head:
+				done = True
+		dataFile.close()
+		return
 
 	def next(self):
 		self.current = self.current.next
@@ -85,6 +111,8 @@ class MusicPlayer():
 		self.artistLbl['text'] = self.current.data.artist
 		self.albumLbl['text'] = self.current.data.album
 		pygame.mixer.music.load(self.current.data.filename)
+		self.started = False
+		self.playing = False
 		return
 
 	def previous(self):
@@ -94,29 +122,68 @@ class MusicPlayer():
 		self.artistLbl['text'] = self.current.data.artist
 		self.albumLbl['text'] = self.current.data.album
 		pygame.mixer.music.load(self.current.data.filename)
+		self.started = False
+		self.playing = False
 		return
 
 	def play(self):
 		if self.playing:
 			do = 'nothing'
 		elif not self.started:
-			pygame.mixer.music.unpause()
-		else:
+			self.started = True
 			pygame.mixer.music.play()
+		else:
+			pygame.mixer.music.unpause()
 		self.playing = True
 		return
 
 	def pause(self):
 		pygame.mixer.music.pause()
+		self.playing = False
 		return
 
 	def delete(self):
+		self.current = self.current.next
+		self.current.prev = self.current.prev.prev
+		self.current.prev.next = self.current
+		self.current = self.current.prev
+		self.next()
+		self.writeDatabase()
 		return
 
 	def add(self):
+		self.entrywindow = Toplevel()
+		self.entrywindow.title('New Song')
+		Label(self.entrywindow, text = 'Song Title').grid(row = 1, column = 1)
+		thing1 = Entry(self.entrywindow, textvariable = self.Title)
+		thing1.grid(row = 1, column = 2)
+		Label(self.entrywindow, text = 'Album Title').grid(row = 2, column = 1)
+		thing2 = Entry(self.entrywindow, textvariable = self.Album)
+		thing2.grid(row = 2, column = 2)
+		Label(self.entrywindow, text = 'Artist').grid(row = 3, column = 1)
+		thing3 = Entry(self.entrywindow, textvariable = self.Artist)
+		thing3.grid(row = 3, column = 2)
+		Label(self.entrywindow, text = 'Song Filepath').grid(row = 4, column = 1)
+		thing4 = Entry(self.entrywindow, textvariable = self.SFilepath)
+		thing4.grid(row = 4, column = 2)
+		Label(self.entrywindow, text = 'Artwork Filepath').grid(row = 5,  column = 1)
+		thing5 = Entry(self.entrywindow, textvariable = self.AFilepath)
+		thing5.grid(row = 5, column = 2)
+		Button(self.entrywindow, text = 'Add', command = self.reallyAdd).grid(row = 6, columnspan = 2)
+		# self.entrywindow.mainloop()
+		return
+
+	def reallyAdd(self):
+		self.music.insert(self.current, song(self.Title.get(), self.Artist.get(), self.Album.get(), self.SFilepath.get(), self.AFilepath.get()))
+		self.next()
+		self.writeDatabase()
+		self.entrywindow.destroy()
 		return
 
 	def search(self):
+		find = Toplevel()
+		find.title('Search')
+		
 		return
 
-makeTheDamnThingAppear = MusicPlayer()
+Appear = MusicPlayer()

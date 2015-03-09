@@ -31,6 +31,7 @@ class CQueue:
 		else:
 			self.tail.next = node
 			self.tail = node
+			self.head.prev = self.tail
 		self.size += 1
 		return
 
