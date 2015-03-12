@@ -88,24 +88,6 @@ class MusicPlayer(): # the main GUI class stuffs
 		dataFile.close() # have to close file
 		return circ
 
-	# write the current circular queue to the database
-	def writeDatabase(self):
-		dataFile = open('songs/Songs.database', 'w') # this will remove current contents
-		curr = self.music.head
-		theinfo = curr.data.title + ',' + curr.data.artist + ',' + curr.data.album + ',' + curr.data.filename + ',' + curr.data.artfile + '\n' # start it off with something
-		dataFile.close()
-		dataFile = open('songs/Songs.database', 'a') # now we can append to the file with out repeating things
-		curr = curr.next
-		done = False
-		while not done: # go through the whole queue and write info
-			theinfo = curr.data.title + ',' + curr.data.artist + ',' + curr.data.album + ',' + curr.data.filename + ',' + curr.data.artfile + '\n'
-			dataFile.write(theinfo)
-			curr = curr.next
-			if curr == self.music.head: # made a whole lap
-				done = True
-		dataFile.close() # have to close file
-		return
-
 	# moves to the next song
 	def next(self):
 		self.current = self.current.next # move to next song
@@ -140,14 +122,13 @@ class MusicPlayer(): # the main GUI class stuffs
 		self.playing = False # not playing, but it is started
 		return
 
-	# remove the song from the queue ********ALSO REMOVES FROM DATABASE***********
+	# remove the song from the queue
 	def delete(self):
 		self.current = self.current.next # move to next node
 		self.current.prev = self.current.prev.prev # prev now points to deleted node's previous
 		self.current.prev.next = self.current # node before deleted node's next now points to deleted node's next
 		self.current = self.current.prev # now move back
 		self.next() # moves forward and updates info
-		self.writeDatabase() # writes to database ***doesn't delete any files***
 		return
 
 	# dialof for adding a song
@@ -176,7 +157,6 @@ class MusicPlayer(): # the main GUI class stuffs
 	def reallyAdd(self):
 		self.music.insert(self.current, song(self.Title.get(), self.Artist.get(), self.Album.get(), self.SFilepath.get(), self.AFilepath.get())) # makes a new song instance and inserts it into the queue at the current position
 		self.next() # move current to new song and update info
-		self.writeDatabase() # write changes to the database
 		self.entrywindow.destroy() # kill the add song dialog
 		return
 
@@ -255,9 +235,11 @@ class MusicPlayer(): # the main GUI class stuffs
 			pygame.mixer.music.load(self.current.data.filename) # load the song so it's ready to play
 		except:
 			messagebox.showinfo('Error', 'There appears to be something wrong with the file for this song. Make sure it is in the correct directory and not corrupted. You may wish to delete this song and add it again') # give them an error if the file doesn't load right
+			self.delete()
+			self.previous()
 		return
 
-try:
-	Appear = MusicPlayer()
+try: # do a try except to make errors non messy
+	Appear = MusicPlayer() # start the engine
 except:
 	messagebox.showinfo('Oops', 'Something went wrong, you should try starting the program again')
