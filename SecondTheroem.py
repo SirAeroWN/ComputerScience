@@ -3,18 +3,24 @@ from matplotlib.pylab import *
 def f(x):
 	return (x**2)
 
-a = 0
+def RHS(a, b):
+	n = 100
+	dx = (b - a) / float(n - 1)
+	x = linspace(a, b, n)
+	y = f(x)
+	yp = dx * y
+	return yp.sum()
+
+a = -2
 b = 2
 n = 100
-dx = (b - a) / float(n - 1)
 x = linspace(a, b, n)
-y = f(x)
-yp = dx * y
-print(yp)
-dy = x * y
+y = zeros(100)
+
+for i in range(1, n):
+	y[i] = RHS(0, x[i])
 
 plot(x,y)
-plot(x, dy, 'r--o')
 xlabel('x')
 ylabel('y')
 legend(['f(x) = x^2', 'integral f(x) = (x^3)/3'])
