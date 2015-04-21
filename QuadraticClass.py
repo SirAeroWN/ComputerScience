@@ -6,6 +6,9 @@ class Quad:
 		self.__roots = self.findRoots()
 		return
 
+	def __str__(self):
+		string = str(a) + 'x^2'
+
 	def seta(self, a):
 		self.__a = a
 		self.__roots = self.findRoots()
